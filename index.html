@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy English Coaching Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind 설정을 위한 script -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-orange': '#f59e0b',
+                        'soft-blue': '#60a5fa',
+                        'gentle-green': '#34d399',
+                        'cozy-pink': '#f472b6'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-orange-50 to-pink-50 min-h-screen">
+    <!-- 네비게이션 바 -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- 로고 -->
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-warm-orange">Galaxy Coaching</h1>
+                </div>
+                
+                <!-- 데스크톱 메뉴 -->
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="showPage('home')" class="nav-btn text-gray-700 hover:text-warm-orange font-medium transition-colors">홈</button>
+                    <button onclick="showPage('materials')" class="nav-btn text-gray-700 hover:text-warm-orange font-medium transition-colors">코칭 자료</button>
+                    <button onclick="showPage('assignments')" class="nav-btn text-gray-700 hover:text-warm-orange font-medium transition-colors">과제 제출</button>
+                    <button onclick="showPage('reports')" class="nav-btn text-gray-700 hover:text-warm-orange font-medium transition-colors">리포트</button>
+                    <button onclick="showPage('registration')" class="nav-btn text-gray-700 hover:text-warm-orange font-medium transition-colors">수강 신청</button>
+                </div>
+                
+                <!-- 모바일 메뉴 버튼 -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-700 hover:text-warm-orange">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- 모바일 메뉴 -->
+            <div id="mobileMenu" class="md:hidden hidden pb-4">
+                <button onclick="showPage('home'); toggleMobileMenu()" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-orange-50 hover:text-warm-orange">홈</button>
+                <button onclick="showPage('materials'); toggleMobileMenu()" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-orange-50 hover:text-warm-orange">코칭 자료</button>
+                <button onclick="showPage('assignments'); toggleMobileMenu()" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-orange-50 hover:text-warm-orange">과제 제출</button>
+                <button onclick="showPage('reports'); toggleMobileMenu()" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-orange-50 hover:text-warm-orange">리포트</button>
+                <button onclick="showPage('registration'); toggleMobileMenu()" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-orange-50 hover:text-warm-orange">수강 신청</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 메인 콘텐츠 컨테이너 -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        
+        <!-- 홈 페이지 -->
+        <div id="homePage" class="page-content">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Welcome to Galaxy Coaching</h2>
+                <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-warm-orange mb-4">코칭 철학</h3>
+                    <p class="text-3xl font-bold text-gray-700 mb-2">Confidence + Kindness = Smile</p>
+                    <p class="text-gray-600">자신감과 친절함이 만나면 진짜 미소가 나옵니다</p>
+                </div>
+            </div>
+
+            <!-- 코칭 핵심 훈련 소개 -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="bg-soft-blue text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🎯</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Pronunciation</h3>
+                    <p class="text-gray-600">정확한 발음으로 자신감 있게 말하기</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="bg-gentle-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">✍️</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Dictation</h3>
+                    <p class="text-gray-600">듣기와 쓰기 실력을 동시에 향상</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="bg-cozy-pink text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">💬</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Collocation</h3>
+                    <p class="text-gray-600">자연스러운 영어 표현과 구문 연습</p>
+                </div>
+            </div>
+
+            <!-- 격려 메시지 -->
+            <div class="bg-gradient-to-r from-warm-orange to-cozy-pink text-white rounded-lg p-8 text-center">
+                <h3 class="text-2xl font-bold mb-4">여러분의 영어 여행을 응원합니다!</h3>
+                <p class="text-lg">실수를 두려워하지 마세요. 자신감과 친절함으로 함께 성장해나가요. 🌟</p>
+            </div>
+        </div>
+
+        <!-- 코칭 자료 페이지 -->
+        <div id="materialsPage" class="page-content hidden">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">코칭 자료</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- PDF 자료 카드 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="bg-red-100 rounded-lg p-4 mb-4">
+                        <span class="text-3xl">📄</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">발음 가이드북</h3>
+                    <p class="text-gray-600 mb-4">영어 발음의 기초부터 고급까지 체계적인 학습 자료</p>
+                    <button class="bg-warm-orange text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">다운로드</button>
+                </div>
+                
+                <!-- 이미지 자료 카드 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="bg-green-100 rounded-lg p-4 mb-4">
+                        <span class="text-3xl">🖼️</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">구문 연습 차트</h3>
+                    <p class="text-gray-600 mb-4">시각적으로 이해하기 쉬운 구문 패턴 차트</p>
+                    <button class="bg-gentle-green text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">보기</button>
+                </div>
+                
+                <!-- 유튜브 링크 카드 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="bg-red-100 rounded-lg p-4 mb-4">
+                        <span class="text-3xl">🎥</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">받아쓰기 연습 영상</h3>
+                    <p class="text-gray-600 mb-4">단계별 받아쓰기 훈련을 위한 영상 자료</p>
+                    <button onclick="window.open('https://youtube.com', '_blank')" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">시청하기</button>
+                </div>
+                
+                <!-- 추가 자료들 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="bg-blue-100 rounded-lg p-4 mb-4">
+                        <span class="text-3xl">🎧</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">리스닝 연습</h3>
+                    <p class="text-gray-600 mb-4">다양한 액센트와 속도의 영어 오디오 자료</p>
+                    <button class="bg-soft-blue text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">재생</button>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="bg-purple-100 rounded-lg p-4 mb-4">
+                        <span class="text-3xl">📚</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">단어장</h3>
+                    <p class="text-gray-600 mb-4">주제별로 정리된 핵심 영단어 모음</p>
+                    <button class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">학습하기</button>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="bg-yellow-100 rounded-lg p-4 mb-4">
+                        <span class="text-3xl">✏️</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">문법 워크시트</h3>
+                    <p class="text-gray-600 mb-4">실용적인 영문법 연습 문제들</p>
+                    <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors">풀어보기</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 과제 제출 페이지 -->
+        <div id="assignmentsPage" class="page-content hidden">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">과제 제출</h2>
+            
+            <div class="max-w-2xl mx-auto">
+                <!-- 과제 제출 폼 -->
+                <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">새 과제 제출</h3>
+                    <form id="assignmentForm">
+                        <div class="mb-4">
+                            <label for="studentName" class="block text-sm font-medium text-gray-700 mb-2">이름</label>
+                            <input type="text" id="studentName" name="studentName" required 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-warm-orange focus:border-transparent">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="assignmentTitle" class="block text-sm font-medium text-gray-700 mb-2">과제 제목</label>
+                            <input type="text" id="assignmentTitle" name="assignmentTitle" required 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-warm-orange focus:border-transparent">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="assignmentContent" class="block text-sm font-medium text-gray-700 mb-2">과제 내용</label>
+                            <textarea id="assignmentContent" name="assignmentContent" rows="6" required 
+                                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-warm-orange focus:border-transparent"
+                                      placeholder="과제 내용을 입력해주세요..."></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full bg-warm-orange text-white py-3 px-4 rounded-lg hover:bg-orange-600 transition-colors font-medium">
+                            과제 제출하기
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- 제출된 과제 목록 -->
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">제출된 과제 목록</h3>
+                    <div id="assignmentsList">
+                        <!-- 동적으로 과제 목록이 여기에 추가됩니다 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 리포트 페이지 -->
+        <div id="reportsPage" class="page-content hidden">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">학습 리포트</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- 종합 성적 카드 -->
+                <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">종합 학습 성과</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="bg-soft-blue text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                                <span class="text-2xl font-bold">85</span>
+                            </div>
+                            <h4 class="font-bold text-gray-800">발음 점수</h4>
+                            <p class="text-sm text-gray-600">우수함</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-gentle-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                                <span class="text-2xl font-bold">92</span>
+                            </div>
+                            <h4 class="font-bold text-gray-800">받아쓰기 점수</h4>
+                            <p class="text-sm text-gray-600">매우 우수함</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-cozy-pink text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                                <span class="text-2xl font-bold">78</span>
+                            </div>
+                            <h4 class="font-bold text-gray-800">구문 연습 점수</h4>
+                            <p class="text-sm text-gray-600">양호함</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 개별 과제 피드백 -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-lg font-bold text-gray-800">과제 #1: 자기소개 발음 연습</h4>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">완료</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center mb-2">
+                                <span class="text-sm font-medium text-gray-700 mr-2">점수:</span>
+                                <span class="text-2xl font-bold text-green-600">88/100</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <h5 class="font-bold text-green-800 mb-2">피드백</h5>
+                            <p class="text-green-700">발음이 많이 개선되었습니다! 특히 'th' 발음이 정확해졌네요. 다음엔 강세 부분을 더 신경써보세요. 전반적으로 자신감 있는 발음이었습니다. 🎉</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-lg font-bold text-gray-800">과제 #2: 뉴스 받아쓰기</h4>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">검토중</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center mb-2">
+                                <span class="text-sm font-medium text-gray-700 mr-2">점수:</span>
+                                <span class="text-2xl font-bold text-blue-600">95/100</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <h5 class="font-bold text-blue-800 mb-2">피드백</h5>
+                            <p class="text-blue-700">훌륭합니다! 거의 완벽한 받아쓰기였어요. 몇 개의 관사만 놓쳤지만 전체적인 이해도가 매우 높습니다. 계속 이런 식으로 연습하시면 됩니다! ⭐</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-lg font-bold text-gray-800">과제 #3: 일상 대화 구문 연습</h4>
+                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">개선 필요</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center mb-2">
+                                <span class="text-sm font-medium text-gray-700 mr-2">점수:</span>
+                                <span class="text-2xl font-bold text-yellow-600">72/100</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 72%"></div>
+                            </div>
+                        </div>
+                        <div class="bg-yellow-50 rounded-lg p-4">
+                            <h5 class="font-bold text-yellow-800 mb-2">피드백</h5>
+                            <p class="text-yellow-700">구문 연습에서 몇 가지 실수가 있었어요. 'make'와 'do'의 구분, 전치사 사용 등을 다시 복습해보세요. 하지만 전반적인 흐름은 자연스러웠습니다. 화이팅! 💪</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 개선 제안 -->
+                <div class="bg-gradient-to-r from-warm-orange to-cozy-pink text-white rounded-lg p-8 mt-8">
+                    <h3 class="text-xl font-bold mb-4">다음 학습 제안</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <span class="mr-3">🎯</span>
+                            <span>구문 연습에 더 집중해보세요 (현재 78점)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-3">📖</span>
+                            <span>전치사와 콜로케이션 학습 자료를 추가로 공부해보세요</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-3">🗣️</span>
+                            <span>발음과 받아쓰기는 우수하니 계속 유지하세요!</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 수강 신청 페이지 -->
+        <div id="registrationPage" class="page-content hidden">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">수강 신청</h2>
+            
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <form id="registrationForm">
+                        <!-- 이름 입력 -->
+                        <div class="mb-6">
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">이름 *</label>
+                            <input type="text" id="name" name="name" required
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-warm-orange focus:border-transparent">
+                        </div>
+                        
+                        <!-- 전화번호 입력 -->
+                        <div class="mb-6">
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">전화번호 *</label>
+                            <input type="tel" id="phone" name="phone" required
+                                   pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+                                   placeholder="010-0000-0000"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-warm-orange focus:border-transparent">
+                        </div>
+                        
+                        <!-- 상담 방법 선택 -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">상담 방법 *</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="contactMethod" value="phone" class="mr-3 text-warm-orange focus:ring-warm-orange">
+                                    <span class="text-gray-700">전화 통화</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="contactMethod" value="kakao" class="mr-3 text-warm-orange focus:ring-warm-orange">
+                                    <span class="text-gray-700">카카오톡 메시지</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- 관심 수업 선택 -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">관심 수업 (복수 선택 가능)</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="courses" value="pronunciation" class="mr-3 text-warm-orange focus:ring-warm-orange rounded">
+                                    <span class="text-gray-700">발음 훈련 (Pronunciation)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="courses" value="dictation" class="mr-3 text-warm-orange focus:ring-warm-orange rounded">
+                                    <span class="text-gray-700">받아쓰기 훈련 (Dictation)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="courses" value="collocation" class="mr-3 text-warm-orange focus:ring-warm-orange rounded">
+                                    <span class="text-gray-700">구문 연습 (Collocation)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- 상담 희망 시간대 -->
+                        <div class="mb-8">
+                            <label for="timeSlot" class="block text-sm font-medium text-gray-700 mb-2">상담 희망 시간대 *</label>
+                            <select id="timeSlot" name="timeSlot" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-warm-orange focus:border-transparent">
+                                <option value="">시간대를 선택해주세요</option>
+                                <option value="morning">오전 9시 - 12시</option>
+                                <option value="afternoon">오후 1시 - 6시</option>
+                                <option value="evening">저녁 7시 - 10시</option>
+                            </select>
+                        </div>
+                        
+                        <!-- 제출 버튼 -->
+                        <button type="submit"
+                                class="w-full bg-warm-orange text-white py-3 px-4 rounded-lg hover:bg-orange-600 transition-colors font-medium text-lg">
+                            수강 신청하기
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- 신청 완료 메시지 (처음에는 숨김) -->
+                <div id="registrationSuccess" class="hidden mt-8 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg">
+                    <h3 class="font-bold text-lg mb-2">수강 신청이 완료되었습니다! 🎉</h3>
+                    <div id="registrationDetails">
+                        <!-- 신청 정보가 여기에 표시됩니다 -->
+                    </div>
+                    <p class="mt-4 text-sm">빠른 시일 내에 연락드리겠습니다. 감사합니다!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 페이지 전환을 위한 함수
+        function showPage(pageId) {
+            // 모든 페이지 숨기기
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.add('hidden'));
+            
+            // 선택된 페이지만 보이기
+            document.getElementById(pageId + 'Page').classList.remove('hidden');
+            
+            // 네비게이션 버튼 활성화 상태 업데이트
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => btn.classList.remove('text-warm-orange', 'font-bold'));
+            
+            // 현재 페이지의 네비게이션 버튼에 활성화 스타일 적용
+            event.target.classList.add('text-warm-orange', 'font-bold');
+        }
+
+        // 모바일 메뉴 토글 함수
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // 과제 제출 기능
+        document.getElementById('assignmentForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // 폼 기본 제출 동작 방지
+            
+            // 폼 데이터 가져오기
+            const formData = new FormData(this);
+            const assignment = {
+                id: Date.now(), // 간단한 ID 생성
+                studentName: formData.get('studentName'),
+                title: formData.get('assignmentTitle'),
+                content: formData.get('assignmentContent'),
+                submitDate: new Date().toLocaleDateString('ko-KR'),
+                submitTime: new Date().toLocaleTimeString('ko-KR')
+            };
+            
+            // localStorage에 과제 저장
+            saveAssignment(assignment);
+            
+            // 과제 목록 업데이트
+            displayAssignments();
+            
+            // 폼 초기화
+            this.reset();
+            
+            // 성공 메시지 표시
+            alert('과제가 성공적으로 제출되었습니다!');
+        });
+
+        // localStorage에 과제 저장하는 함수
+        function saveAssignment(assignment) {
+            // 기존 과제 목록 가져오기
+            let assignments = JSON.parse(localStorage.getItem('assignments')) || [];
+            
+            // 새 과제 추가
+            assignments.unshift(assignment); // 맨 앞에 추가 (최신순)
+            
+            // localStorage에 저장
+            localStorage.setItem('assignments', JSON.stringify(assignments));
+        }
+
+        // 과제 목록을 화면에 표시하는 함수
+        function displayAssignments() {
+            const assignmentsList = document.getElementById('assignmentsList');
+            const assignments = JSON.parse(localStorage.getItem('assignments')) || [];
+            
+            if (assignments.length === 0) {
+                assignmentsList.innerHTML = '<p class="text-gray-500 text-center py-8">아직 제출된 과제가 없습니다.</p>';
+                return;
+            }
+            
+            // 과제 목록 HTML 생성
+            assignmentsList.innerHTML = assignments.map(assignment => `
+                <div class="border border-gray-200 rounded-lg p-4 mb-4 hover:shadow-md transition-shadow">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-gray-800">${assignment.title}</h4>
+                        <span class="text-sm text-gray-500">${assignment.submitDate} ${assignment.submitTime}</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">제출자: ${assignment.studentName}</p>
+                    <div class="bg-gray-50 rounded p-3">
+                        <p class="text-gray-700 whitespace-pre-wrap">${assignment.content}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 수강 신청 폼 처리
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // 폼 기본 제출 동작 방지
+            
+            // 폼 데이터 가져오기
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const contactMethod = formData.get('contactMethod');
+            const timeSlot = formData.get('timeSlot');
+            
+            // 선택된 수업들 가져오기
+            const selectedCourses = Array.from(document.querySelectorAll('input[name="courses"]:checked'))
+                .map(checkbox => checkbox.value);
+            
+            // 입력값 검증
+            if (!contactMethod) {
+                alert('상담 방법을 선택해주세요.');
+                return;
+            }
+            
+            if (selectedCourses.length === 0) {
+                alert('관심 수업을 하나 이상 선택해주세요.');
+                return;
+            }
+            
+            // 수업 이름 매핑
+            const courseNames = {
+                'pronunciation': '발음 훈련',
+                'dictation': '받아쓰기 훈련', 
+                'collocation': '구문 연습'
+            };
+            
+            // 시간대 이름 매핑
+            const timeSlotNames = {
+                'morning': '오전 9시 - 12시',
+                'afternoon': '오후 1시 - 6시',
+                'evening': '저녁 7시 - 10시'
+            };
+            
+            // 상담 방법 이름 매핑
+            const contactMethodNames = {
+                'phone': '전화 통화',
+                'kakao': '카카오톡 메시지'
+            };
+            
+            // 신청 정보 표시
+            const detailsHTML = `
+                <div class="bg-white rounded p-4 mt-4">
+                    <h4 class="font-bold mb-2">신청 정보</h4>
+                    <p><strong>이름:</strong> ${name}</p>
+                    <p><strong>전화번호:</strong> ${phone}</p>
+                    <p><strong>상담 방법:</strong> ${contactMethodNames[contactMethod]}</p>
+                    <p><strong>관심 수업:</strong> ${selectedCourses.map(course => courseNames[course]).join(', ')}</p>
+                    <p><strong>희망 시간대:</strong> ${timeSlotNames[timeSlot]}</p>
+                </div>
+            `;
+            
+            // 성공 메시지와 신청 정보 표시
+            document.getElementById('registrationDetails').innerHTML = detailsHTML;
+            document.getElementById('registrationSuccess').classList.remove('hidden');
+            
+            // 폼 숨기기
+            this.parentElement.style.display = 'none';
+            
+            // 페이지 상단으로 스크롤
+            window.scrollTo(0, 0);
+        });
+
+        // 페이지 로드 시 과제 목록 표시
+        document.addEventListener('DOMContentLoaded', function() {
+            displayAssignments();
+        });
+    </script>
+</body>
+</html>
